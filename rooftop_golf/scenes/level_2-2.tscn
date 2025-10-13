@@ -1,0 +1,159 @@
+[gd_scene load_steps=18 format=3 uid="uid://bcr7imydne1y4"]
+
+[ext_resource type="Script" uid="uid://dbwqrefvwv25p" path="res://scripts/game_mode.gd" id="1_3ah0p"]
+[ext_resource type="Script" uid="uid://djpcmpumnbvyd" path="res://scripts/level_manager.gd" id="1_ocdj1"]
+[ext_resource type="Texture2D" uid="uid://kytnkvhjpv3y" path="res://assets/free-city-backgrounds-pixel-art/city 8/1.png" id="2_ht1eo"]
+[ext_resource type="Texture2D" uid="uid://b0nao5yoxtfpl" path="res://assets/free-city-backgrounds-pixel-art/city 8/2.png" id="3_sygk6"]
+[ext_resource type="Texture2D" uid="uid://bvd55dkkjyco5" path="res://assets/free-city-backgrounds-pixel-art/city 8/3.png" id="4_73yfc"]
+[ext_resource type="Texture2D" uid="uid://cohn4slixreaf" path="res://assets/free-city-backgrounds-pixel-art/city 8/4.png" id="5_3ah0p"]
+[ext_resource type="Texture2D" uid="uid://dw2ckbaiubvl" path="res://assets/free-city-backgrounds-pixel-art/city 8/5.png" id="6_jgcru"]
+[ext_resource type="Material" uid="uid://bh75753xbvihr" path="res://assets/blur.tres" id="7_hv14w"]
+[ext_resource type="PackedScene" uid="uid://ct0ty6pt7clbx" path="res://scenes/user_ui.tscn" id="8_qjd44"]
+[ext_resource type="PackedScene" uid="uid://bctp6wf6jvkdf" path="res://scenes/ball.tscn" id="9_vu56r"]
+[ext_resource type="Shader" uid="uid://ctk785uxvo44y" path="res://shader/moving_dots.gdshader" id="10_8v2qh"]
+[ext_resource type="Gradient" uid="uid://db3ke2qheyb2x" path="res://resources/powerUp_gradient.tres" id="11_xu3qy"]
+[ext_resource type="Script" uid="uid://cjdg11iqp3o64" path="res://scripts/aim_line.gd" id="12_htl0t"]
+[ext_resource type="PackedScene" uid="uid://b1r2kjpbfkds1" path="res://scenes/kill_zone.tscn" id="13_m3ldb"]
+[ext_resource type="PackedScene" uid="uid://ni14qrsteumw" path="res://scenes/player.tscn" id="15_ht1eo"]
+[ext_resource type="PackedScene" uid="uid://dgm4q6wkcppiv" path="res://scenes/crane_arm.tscn" id="19_jgcru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlo6d"]
+shader = ExtResource("10_8v2qh")
+
+[node name="level_2-2" type="Node2D"]
+script = ExtResource("1_3ah0p")
+wind_force = 30.0
+wind_variance = 10.0
+wind_change_interval = 3.0
+
+[node name="level_manager" type="Node2D" parent="." node_paths=PackedStringArray("ball")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_ocdj1")
+ball = NodePath("../ball")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Parallax2D" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+z_index = -2
+
+[node name="bg" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D"]
+position = Vector2(641.9686, 336.875)
+scale = Vector2(2.2778862, 2.2770061)
+texture = ExtResource("2_ht1eo")
+
+[node name="Parallax2D2" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="layer_1" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D2"]
+position = Vector2(0, 4)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("3_sygk6")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="layer_2" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D3"]
+position = Vector2(12, 104)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("4_73yfc")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="layer_3" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D4"]
+position = Vector2(48, 100)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("5_3ah0p")
+centered = false
+
+[node name="Parallax2D5" type="Parallax2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="layer_4" type="Sprite2D" parent="SubViewportContainer/SubViewport/Parallax2D5"]
+position = Vector2(668.00006, 488.00003)
+scale = Vector2(2.5308642, 2.5308642)
+texture = ExtResource("6_jgcru")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+z_index = -8
+material = ExtResource("7_hv14w")
+anchors_preset = -1
+anchor_left = -0.006
+anchor_top = -0.011000001
+anchor_right = 1.0041876
+anchor_bottom = 1.0010556
+offset_left = -10.32
+offset_top = 7.9200006
+offset_right = -1.3601074
+offset_bottom = -9.76001
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="user_ui" parent="SubViewportContainer/SubViewport" instance=ExtResource("8_qjd44")]
+z_index = 10
+
+[node name="ball" parent="." instance=ExtResource("9_vu56r")]
+z_index = 10
+position = Vector2(480, 495)
+
+[node name="player" parent="." instance=ExtResource("15_ht1eo")]
+position = Vector2(416, 848)
+
+[node name="ColorRect2" type="ColorRect" parent="player"]
+modulate = Color(0.827451, 0.81960785, 0.38039216, 0.7764706)
+z_index = -1
+offset_left = -73.33328
+offset_top = -216.0
+offset_right = -44.01291
+offset_bottom = -177.43796
+scale = Vector2(4.12, 20.028522)
+
+[node name="aim_line" type="Line2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mlo6d")
+gradient = ExtResource("11_xu3qy")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 1
+antialiased = true
+script = ExtResource("12_htl0t")
+trajectory_fade_enabled = false
+trajectory_fade_end_alpha = 0.0
+
+[node name="boundry" type="Node2D" parent="."]
+z_index = 10
+
+[node name="kill_zone" parent="boundry" instance=ExtResource("13_m3ldb")]
+position = Vector2(-32, 736)
+scale = Vector2(1.1600004, 5.0400004)
+
+[node name="kill_zone2" parent="boundry" instance=ExtResource("13_m3ldb")]
+position = Vector2(1312.0001, -344)
+rotation = 1.5707964
+scale = Vector2(1, -7.8799973)
+
+[node name="kill_zone3" parent="boundry" instance=ExtResource("13_m3ldb")]
+position = Vector2(-24, -408)
+rotation = 1.568877
+scale = Vector2(1, 7.9629807)
+
+[node name="kill_zone4" parent="boundry" instance=ExtResource("13_m3ldb")]
+position = Vector2(-200, -112)
+scale = Vector2(1.2800007, -5.639999)
+
+[node name="crane_arm" parent="." instance=ExtResource("19_jgcru")]
+position = Vector2(954, 202)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(641, 359)
+limit_top = 0
+limit_right = 1280
+limit_bottom = 720
+limit_smoothed = true

@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://bctp6wf6jvkdf"]
+
+[ext_resource type="Texture2D" uid="uid://c10okeknde2we" path="res://assets/golf call.png" id="1_7s4qf"]
+[ext_resource type="Material" uid="uid://bo2h607bc4wyu" path="res://shader/glow.tres" id="1_eew57"]
+[ext_resource type="Script" uid="uid://c0asne04p302i" path="res://scripts/ball.gd" id="2_ball"]
+[ext_resource type="AudioStream" uid="uid://j4ub8vhmf0fk" path="res://assets/audiomass-output_golf_hit_low.mp3" id="3_4dx81"]
+[ext_resource type="AudioStream" uid="uid://b1pjittdb2mid" path="res://assets/audiomass-output_golf_hit2.mp3" id="4_eew57"]
+[ext_resource type="Gradient" uid="uid://buhued8ng7lp" path="res://resources/fire.tres" id="4_fwo8l"]
+[ext_resource type="AudioStream" uid="uid://4eg7ah0niwv1" path="res://assets/awww so close.mp3" id="6_jj7gd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7s4qf"]
+radius = 29.999996
+
+[node name="ball" type="CharacterBody2D" groups=["ball"]]
+material = ExtResource("1_eew57")
+scale = Vector2(1.15, 1.15)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_ball")
+trail_length = 10
+trail_width = 5.0
+trail_color = Color(1, 1, 1, 0.38039216)
+trail_fade = false
+air_resistance = 1.0
+gravity_scale = 0.75
+miss_sound_chance = 0.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.15, 0.15)
+shape = SubResource("CircleShape2D_7s4qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.14999998, 0.14999998)
+texture = ExtResource("1_7s4qf")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-9.565218, 0)
+default_color = Color(1, 1, 1, 0.34901962)
+gradient = ExtResource("4_fwo8l")
+
+[node name="fire_trail" type="Line2D" parent="."]
+visible = false
+z_index = 5
+position = Vector2(-9.565218, 0)
+width = 8.0
+gradient = ExtResource("4_fwo8l")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+
+[node name="ball_ground_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4dx81")
+volume_db = -1.0
+
+[node name="ball_player_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_eew57")
+volume_db = 13.238
+
+[node name="aww_close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_jj7gd")
+volume_db = -5.0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3d3f344062nc"]
+
+[ext_resource type="Script" uid="uid://cto5f8y3a3tkl" path="res://scripts/buildings_manager.gd" id="1_6adhg"]
+[ext_resource type="PackedScene" uid="uid://dhpwaym2w6j8u" path="res://scenes/building_3.tscn" id="2_l23xe"]
+[ext_resource type="PackedScene" uid="uid://dssuhnv1m4moj" path="res://scenes/building_4.tscn" id="3_6adhg"]
+[ext_resource type="PackedScene" uid="uid://d18ox4y20haop" path="res://scenes/building_5.tscn" id="4_wb4bi"]
+
+[node name="BuildingsManager" type="Node2D"]
+script = ExtResource("1_6adhg")
+building_scenes = Array[PackedScene]([ExtResource("2_l23xe"), ExtResource("3_6adhg"), ExtResource("4_wb4bi")])

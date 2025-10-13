@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ni14qrsteumw"]
+
+[ext_resource type="Texture2D" uid="uid://c5iymhtxfq310" path="res://assets/building_2.png" id="1_g2els"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kne3"]
+size = Vector2(159, 479)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqmnm"]
+size = Vector2(5, 7.8333335)
+
+[node name="player" type="Node2D"]
+z_index = 5
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_g2els")
+
+[node name="roof_tee" type="StaticBody2D" parent="."]
+position = Vector2(0, -224)
+collision_layer = 2
+collision_mask = 5
+
+[node name="roof" type="CollisionShape2D" parent="roof_tee"]
+position = Vector2(0, 232.5)
+shape = SubResource("RectangleShape2D_8kne3")
+
+[node name="tee" type="CollisionShape2D" parent="roof_tee"]
+visible = false
+position = Vector2(128, 222.58333)
+shape = SubResource("RectangleShape2D_gqmnm")
+
+[node name="spawn_ball" type="Marker2D" parent="."]
+position = Vector2(42.666668, -237.33334)

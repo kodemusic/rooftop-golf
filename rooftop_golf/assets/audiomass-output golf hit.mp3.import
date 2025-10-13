@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1hto83lr2x3x"
+path="res://.godot/imported/audiomass-output golf hit.mp3-3ba9de60dc3cdb3b775e8aafc1e49c34.mp3str"
+
+[deps]
+
+source_file="res://assets/audiomass-output golf hit.mp3"
+dest_files=["res://.godot/imported/audiomass-output golf hit.mp3-3ba9de60dc3cdb3b775e8aafc1e49c34.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

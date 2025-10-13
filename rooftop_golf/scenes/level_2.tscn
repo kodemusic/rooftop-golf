@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://c84r6rb7qlf2b"]
+
+[ext_resource type="Texture2D" uid="uid://0evxpfhracr2" path="res://assets/free-city-backgrounds-pixel-art/city 1/1.png" id="1_b4j7a"]
+[ext_resource type="Texture2D" uid="uid://b77rvf1nw7vce" path="res://assets/free-city-backgrounds-pixel-art/city 1/2.png" id="2_b4j7a"]
+[ext_resource type="Texture2D" uid="uid://s4hpmth2idax" path="res://assets/free-city-backgrounds-pixel-art/city 1/3.png" id="3_wo48x"]
+[ext_resource type="Texture2D" uid="uid://bedlxjj452hqq" path="res://assets/free-city-backgrounds-pixel-art/city 1/4.png" id="4_y0kc7"]
+[ext_resource type="Texture2D" uid="uid://bh6ihh227ycwe" path="res://assets/free-city-backgrounds-pixel-art/city 1/5.png" id="5_ne2mo"]
+[ext_resource type="PackedScene" uid="uid://bctp6wf6jvkdf" path="res://scenes/ball.tscn" id="6_6cvei"]
+[ext_resource type="PackedScene" uid="uid://ni14qrsteumw" path="res://scenes/player.tscn" id="8_hey2k"]
+[ext_resource type="PackedScene" uid="uid://b1r2kjpbfkds1" path="res://scenes/kill_zone.tscn" id="9_172wr"]
+[ext_resource type="Script" uid="uid://djpcmpumnbvyd" path="res://scripts/level_manager.gd" id="13_igmy8"]
+
+[node name="level_2" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-728.0]
+
+[node name="level_manager" type="Node2D" parent="." node_paths=PackedStringArray("spawn_point", "ball", "level_generator")]
+script = ExtResource("13_igmy8")
+spawn_point = NodePath("../spawn_ball")
+ball = NodePath("../ball")
+level_generator = NodePath("")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+z_index = -2
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="bg" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(641.9686, 336.875)
+scale = Vector2(2.2778862, 2.2770061)
+texture = ExtResource("1_b4j7a")
+
+[node name="layer_4" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(616.00006, 464.00003)
+scale = Vector2(2.5308642, 2.5308642)
+texture = ExtResource("2_b4j7a")
+
+[node name="layer_1" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(9, 149)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("3_wo48x")
+centered = false
+
+[node name="layer_2" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(-40, 136)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("4_y0kc7")
+centered = false
+
+[node name="layer_3" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(-60, 125)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("5_ne2mo")
+centered = false
+
+[node name="aim_line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 3.0
+default_color = Color(1, 1, 1, 0.8)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="kill_zone" parent="." instance=ExtResource("9_172wr")]
+position = Vector2(-48, 728)
+scale = Vector2(1.104298, 2.2470114)
+
+[node name="kill_zone2" parent="." instance=ExtResource("9_172wr")]
+position = Vector2(1296, 896)
+rotation = -1.5707964
+
+[node name="kill_zone3" parent="." instance=ExtResource("9_172wr")]
+position = Vector2(-56, -400.00003)
+scale = Vector2(1.1200013, 1.1200013)
+
+[node name="kill_zone4" parent="." instance=ExtResource("9_172wr")]
+position = Vector2(-14, -407.99997)
+rotation = 1.568877
+
+[node name="ball" parent="." instance=ExtResource("6_6cvei")]
+
+[node name="spawn_ball" type="Marker2D" parent="."]
+
+[node name="building_1" parent="." instance=ExtResource("8_hey2k")]
+position = Vector2(3, 800)

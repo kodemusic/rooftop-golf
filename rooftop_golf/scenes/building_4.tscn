@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dssuhnv1m4moj"]
+
+[ext_resource type="Texture2D" uid="uid://by2hg0ixhxrqi" path="res://assets/building_4.png" id="1_gcqob"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ji6y4"]
+size = Vector2(160, 486)
+
+[node name="building_4" type="Node2D"]
+scale = Vector2(1.25, 1.652)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(5.9604645e-08, -77.481834)
+collision_layer = 2
+collision_mask = 4
+
+[node name="rooftop_base" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 89)
+shape = SubResource("RectangleShape2D_ji6y4")
+
+[node name="building_4" type="Sprite2D" parent="."]
+texture = ExtResource("1_gcqob")

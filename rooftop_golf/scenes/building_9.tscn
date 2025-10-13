@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://r3scdbcw0wgl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wddj"]
+size = Vector2(154.79999, 492)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq3vg"]
+size = Vector2(188.5, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf0kh"]
+size = Vector2(61.40001, 5.2000227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm712"]
+size = Vector2(20.15002, 3.200038)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jf0kh"]
+load_path = "res://.godot/imported/building_8.png-cac1dc758ccb375148d16ad9543973ba.ctex"
+
+[node name="building_9" type="Node2D"]
+scale = Vector2(1.25, 1.25)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(15.399995, 8.999999)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_0wddj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(15.25, -222)
+shape = SubResource("RectangleShape2D_hq3vg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-69.6, 100.59998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_jf0kh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-98.39997, 88.324974)
+rotation = 1.5707964
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_gm712")
+
+[node name="building_9" type="Sprite2D" parent="."]
+scale = Vector2(0.9999998, 0.9999998)
+texture = SubResource("CompressedTexture2D_jf0kh")

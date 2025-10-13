@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgm4q6wkcppiv"]
+
+[ext_resource type="Texture2D" uid="uid://b1vrh7al0qvx8" path="res://assets/crane arm.png" id="1_ouuyg"]
+[ext_resource type="Script" uid="uid://s2kahsg782ir" path="res://scripts/crane_arm.gd" id="1_uk4at"]
+[ext_resource type="Texture2D" uid="uid://3j1yc5begdnm" path="res://assets/flag.png" id="3_fsyrx"]
+[ext_resource type="PackedScene" uid="uid://35cp5lycmove" path="res://scenes/goal.tscn" id="4_7slau"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouuyg"]
+size = Vector2(391.3043, 27.391296)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7slau"]
+size = Vector2(200, 43.086945)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osq84"]
+size = Vector2(113.04352, 25.391327)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk4at"]
+size = Vector2(1560, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsyrx"]
+size = Vector2(56, 74.5)
+
+[node name="the_crane" type="Node2D"]
+
+[node name="crane_arm" type="PinJoint2D" parent="."]
+node_a = NodePath("craneArm")
+node_b = NodePath("platform")
+angular_limit_enabled = true
+angular_limit_lower = -0.40840703
+angular_limit_upper = 0.6126106
+script = ExtResource("1_uk4at")
+impulse_strength_range = Vector2(0, 500)
+
+[node name="platform" type="RigidBody2D" parent="crane_arm"]
+position = Vector2(4, 0)
+
+[node name="platform2" type="Sprite2D" parent="crane_arm/platform"]
+position = Vector2(-2.619995, 52.630005)
+scale = Vector2(0.46, 0.46)
+texture = ExtResource("1_ouuyg")
+region_enabled = true
+region_rect = Rect2(1016, 192, 406, 281)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crane_arm/platform"]
+position = Vector2(-0.6199951, 102.92999)
+scale = Vector2(0.46, 0.46)
+shape = SubResource("RectangleShape2D_ouuyg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="crane_arm/platform"]
+position = Vector2(-4.619995, 86.54001)
+scale = Vector2(0.46, 0.46)
+shape = SubResource("RectangleShape2D_7slau")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="crane_arm/platform"]
+position = Vector2(-4.619995, 70.78999)
+scale = Vector2(0.46, 0.46)
+shape = SubResource("RectangleShape2D_osq84")
+
+[node name="goal" parent="crane_arm/platform" instance=ExtResource("4_7slau")]
+z_index = 1
+position = Vector2(-59, 86.99997)
+
+[node name="wind_flag" type="Sprite2D" parent="crane_arm/platform"]
+z_index = 1
+position = Vector2(-51, 67.99997)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_fsyrx")
+region_enabled = true
+region_rect = Rect2(-29.675, 5, 68.455, 59)
+
+[node name="craneArm" type="StaticBody2D" parent="crane_arm"]
+position = Vector2(4, -44)
+rotation = 0.028772283
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="crane_arm/craneArm"]
+position = Vector2(387.5, -51.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_uk4at")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="crane_arm/craneArm"]
+position = Vector2(-0.5, -10.875)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_fsyrx")
+
+[node name="crane" type="Sprite2D" parent="crane_arm/craneArm"]
+position = Vector2(377.5, -13.5)
+texture = ExtResource("1_ouuyg")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(102, 852, 803, 141)

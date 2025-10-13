@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgwflx7c4vcou"]
+
+[ext_resource type="Script" uid="uid://dooq3l8xdhhq3" path="res://scripts/fireworks.gd" id="1_abcde"]
+[ext_resource type="Shader" uid="uid://y4etmmkvle1l" path="res://shader/glow.gdshader" id="2_wd7sl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_amg0g"]
+shader = ExtResource("2_wd7sl")
+shader_parameter/glow_color = Color(0.8462217, 0.8385213, 0.022417247, 0.5019608)
+shader_parameter/glow_strength = 1.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1"]
+lifetime_randomness = 0.19
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 4.0
+color = Color(1, 1, 0, 1)
+
+[node name="FireworksTest" type="Node2D"]
+script = ExtResource("1_abcde")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_amg0g")
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 75
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_1")

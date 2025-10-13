@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://35cp5lycmove"]
+
+[ext_resource type="Script" uid="uid://dg4ht7giakmof" path="res://scripts/goal.gd" id="1_w3gav"]
+[ext_resource type="AudioStream" uid="uid://c3g6f8b6fqg8e" path="res://assets/audiomass-output_cheer.mp3" id="2_sx1j4"]
+[ext_resource type="PackedScene" uid="uid://cgwflx7c4vcou" path="res://scenes/fireworks_test.tscn" id="3_w3gav"]
+[ext_resource type="Material" uid="uid://bo2h607bc4wyu" path="res://shader/glow.tres" id="4_aqdrf"]
+[ext_resource type="Texture2D" uid="uid://di2d515x7xrnf" path="res://assets/arrow.png" id="4_jvyg3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl315"]
+size = Vector2(9.599999, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvyg3"]
+
+[sub_resource type="Animation" id="Animation_jvyg3"]
+resource_name = "arrow"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ARROW:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667, 1, 1.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -45.995), Vector2(0, -19.2), Vector2(0, -51.199997), Vector2(0, -12.800007)]
+}
+
+[sub_resource type="Animation" id="Animation_aqdrf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ARROW:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -19.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jo0vh"]
+_data = {
+&"RESET": SubResource("Animation_aqdrf"),
+&"arrow": SubResource("Animation_jvyg3")
+}
+
+[node name="goal" type="Node2D"]
+scale = Vector2(1.25, 1.25)
+script = ExtResource("1_w3gav")
+
+[node name="FireworksTest" parent="." instance=ExtResource("3_w3gav")]
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="goal_cup" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal_cup"]
+z_index = 2
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_xl315")
+
+[node name="crowd_cheer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sx1j4")
+volume_db = -4.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_jvyg3")
+use_parent_material = true
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 12.0
+scale = Vector2(0.5, 2)
+color = Color(0, 0.78241825, 0.21792933, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ARROW" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("4_aqdrf")
+position = Vector2(0, -19.2)
+scale = Vector2(0.12559055, 0.12559055)
+texture = ExtResource("4_jvyg3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jo0vh")
+}
+autoplay = "arrow"
+
+[connection signal="body_entered" from="goal_cup" to="." method="_on_goal_cup_body_entered"]
